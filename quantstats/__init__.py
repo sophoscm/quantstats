@@ -23,19 +23,14 @@ from . import version
 __version__ = version.version
 __author__ = "Ran Aroussi"
 
-from . import stats, utils, plots, reports
-
-__all__ = ["stats", "plots", "reports", "utils", "extend_pandas"]
-
-# try automatic matplotlib inline
-utils._in_notebook(matplotlib_inline=True)
-
 
 def extend_pandas():
     """
     Extends pandas by exposing methods to be used like:
     df.sharpe(), df.best('day'), ...
     """
+    from . import stats, utils, plots, reports
+
     from pandas.core.base import PandasObject as _po
 
     _po.compsum = stats.compsum
